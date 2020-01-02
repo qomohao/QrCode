@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二维码生成</title>
+    <style>
+    .main{
+        padding: 50px;
+    }
+    .act{
+        padding: 10px;
+    }
+    .qrCode{
+        margin:500px 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="act">
+            <input type="text" value="新年快乐！" id="value" placeholder="请输入内容">
+            <input type="color" value="#fff" id="colorVal">
+            <button id="make">生成二维码</button>
+        </div>
+        <div id="qrCode"></div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script>
+
+    $("#make").click(function(){
+        $("#qrCode").html(null);
+        if(!$("#value").val()){
+            alert("请输入内容！");
+            return
+        }
+        $('#qrCode').qrcode(
+            {
+                width: 200,
+                height: 200,
+                correctLevel:0,
+                render: "table",
+                foreground: $("#colorVal").val() || "#000", //前景颜色 
+                background: "#fff", //背景颜色 
+                text: $("#value").val()
+            }        
+        );
+    })
+</script>
